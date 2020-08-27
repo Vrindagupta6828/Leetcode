@@ -72,7 +72,7 @@ class Solution {
         while (map.containsKey(minCol)) {
             List<int[]> list = map.get(minCol);
             Collections.sort(list, new Comparator<int[]>() {
-                @Override 
+                @Override//used for sorting in ascending order 
                 public int compare(int[] arr1, int[] arr2) {
                     if (arr1[0] != arr2[0]) {
                         return arr1[0] - arr2[0];
