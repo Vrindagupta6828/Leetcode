@@ -37,3 +37,64 @@ class Solution {
                     secret.substring(secret.indexOf(guess.charAt(i))+1,secret.length());}
     }return(ab[0]+"A"+ab[1]+"B");
 }}
+
+//Solution (100% 0 ms)
+
+class Solution {
+//     1807
+//     7810
+//        i
+//     1A3B
+        
+//     1123
+//     0111
+//        i
+//     1A 1B  
+    
+//     1. same #, same pos
+        
+//     2. same #, diff pos 
+      
+//     1882
+//     8880
+//        i
+//     2A1B  
+    // 1st iteration:
+    //     find all As/bulls
+    //     record all other(not bulls) numbers and count in secret
+    //         Map<Integer, Integer> map; key: digit that exist in secret but not a bull, value: count
+    // 2nd iteration:
+    //     if cur digit is not bull
+    //     check whether it is recorded in data structure
+    public String getHint(String secret, String guess) {
+        int[] secretMap = new int[10];
+        int[] guessMap = new int[10];
+        int bull = 0;
+        int cow = 0;
+
+        for(int i = 0; i < secret.length(); i++) {
+            if(secret.charAt(i) == guess.charAt(i)) {
+                bull++;
+            } else {
+                int sDigit = secret.charAt(i) - '0';
+                int gDigit = guess.charAt(i) - '0';
+                if(guessMap[sDigit] > 0) {
+                    guessMap[sDigit]--;
+                    cow++;
+                } else {
+                    secretMap[sDigit]++;
+                }
+                if(secretMap[gDigit] > 0) {
+                    secretMap[gDigit]--;
+                    cow++;
+                } else {
+                    guessMap[gDigit]++;
+                }
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(bull).append("A").append(cow).append("B");
+        return sb.toString();
+    }
+}
