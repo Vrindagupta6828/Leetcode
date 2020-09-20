@@ -37,6 +37,22 @@ for (int i = 0; i < len; i++) {
 //My Solution(100 % better 0 ms)
 class Solution {
     public int removeDuplicates(int[] nums) {
+        if(nums.length==1 || nums.length==0) return nums.length;
+        int p=1;
+        for(int i=1;i<nums.length;i++){
+            if(nums[p-1]!=nums[i]){
+                int temp=nums[p];
+                nums[p]=nums[i];
+                nums[i]=temp;p++;
+            }
+        }
+        return p;
+    }
+}
+
+//Solution(100% better)
+class Solution {
+    public int removeDuplicates(int[] nums) {
         if (nums.length == 0) {
             return 0;
         } else {
