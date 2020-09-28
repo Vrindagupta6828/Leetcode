@@ -37,3 +37,31 @@ class Solution {
         return (nums[j]==val)?j:j+1;
     }
 }
+
+//Solution (o(n) time o(1) space)(when elemnets are rare to avoid unnecessary copy)
+public int removeElement(int[] nums, int val) {
+    int i = 0;
+    int n = nums.length;
+    while (i < n) {
+        if (nums[i] == val) {
+            nums[i] = nums[n - 1];
+            // reduce array size by one
+            n--;
+        } else {
+            i++;
+        }
+    }
+    return n;
+}
+
+//Solution(Two pointers)
+public int removeElement(int[] nums, int val) {
+    int i = 0;
+    for (int j = 0; j < nums.length; j++) {
+        if (nums[j] != val) {
+            nums[i] = nums[j];
+            i++;
+        }
+    }
+    return i;
+}
