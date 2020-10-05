@@ -32,7 +32,7 @@ Constraints:
 1 <= N <= 9
 Array of Nuts/Bolts can only consist of the following elements:{'@', '#', '$', '%', '^', '&', '~', '*', '!'}.  */
 
-//Solution
+//Solution  or apply any sorting technique 
 class Solution {
     void matchPairs(char nuts[], char bolts[], int n) {
         // code here
