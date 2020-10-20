@@ -52,3 +52,27 @@ class Solution {
         return 0;
     }
 }
+
+//Solution 2
+class Solution {
+    public int[] numSmallerByFrequency(String[] queries, String[] words) {
+        int[] result=new int[queries.length];
+        for(int i=0;i<queries.length;i++){
+            int c=0;
+            for(int j=0;j<words.length;j++){
+                if(f(queries[i])<f(words[j]))
+                {c++;}
+            } result[i]=c;
+        }
+        return result;
+    }
+    
+    public int f(String s){
+       int[] count=new int[26];char check=s.charAt(0);
+        for(int i=0;i<s.length();i++){
+            count[s.charAt(i)-'a']++;
+            if(s.charAt(i)<check) check=s.charAt(i);
+        }
+        return count[check-'a'];
+    }
+}
