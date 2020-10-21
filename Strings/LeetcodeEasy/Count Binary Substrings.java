@@ -20,7 +20,7 @@ Note:
 s.length will be between 1 and 50,000.
 s will only consist of "0" or "1" characters.   */
 
-//Solution:
+//Solution1: o(n)
 class Solution {
     public int countBinarySubstrings(String s) {
         int result=0;
@@ -39,6 +39,7 @@ class Solution {
     }
 }
 
+//Solution 2(o(n) time and space)
 class Solution {
     public int countBinarySubstrings(String s) {
         int[] groups = new int[s.length()];
@@ -59,12 +60,8 @@ class Solution {
         return ans;
     }
 }
-Complexity Analysis
 
-Time Complexity: O(N)O(N), where NN is the length of s. Every loop is through O(N)O(N) items with O(1)O(1) work inside the for-block.
-
-Space Complexity: O(N)O(N), the space used by groups.
-
+//Solution 3(o(n) time and o(1) space)
 class Solution {
     public int countBinarySubstrings(String s) {
         int ans = 0, prev = 0, cur = 1;
@@ -80,8 +77,3 @@ class Solution {
         return ans + Math.min(prev, cur);
     }
 }
-Complexity Analysis
-
-Time Complexity: O(N)O(N), where NN is the length of s. Every loop is through O(N)O(N) items with O(1)O(1) work inside the for-block.
-
-Space Complexity: O(1)O(1), the space used by prev, cur, and ans.
