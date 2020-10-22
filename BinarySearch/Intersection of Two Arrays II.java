@@ -50,3 +50,57 @@ class Solution {
         return res;
     }
 }
+
+//Solution 2(binary search)
+class Solution {
+    Set<Integer> seen = new HashSet<>();
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1); Arrays.sort(nums2);
+        int n1 = nums1.length, n2 = nums2.length;
+        List<Integer> v = new ArrayList<>();
+        for(int i=0;i<n1;i++){
+             int pos = binarySearch(nums2,0,n2-1,nums1[i]);
+             if(pos>=0){
+                 v.add(nums1[i]);
+                 seen.add(pos);
+             }
+        }
+        int[] ans = new int[v.size()];
+        int i=0;for(int val : v) ans[i++] = val;
+        return ans;
+    }
+    
+    int binarySearch(int[] arr, int lo, int hi, int key){
+        if(lo>hi) return -1;
+        int mid = lo + (hi-lo)/2;
+        if(arr[mid] == key && seen.contains(mid)){
+         int x =  binarySearch(arr,lo,mid-1,key);
+         if(x != -1) return x;
+         return binarySearch(arr,mid+1,hi,key);
+        }
+        if(arr[mid] == key) return mid;
+        if(arr[mid] > key) return binarySearch(arr,lo,mid-1,key);
+        return binarySearch(arr,mid+1,hi,key);
+    }
+}
+
+//Solution 3(2 pointer)
+class Solution {
+    public int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1); Arrays.sort(nums2);
+        int n1= nums1.length, n2= nums2.length;
+        int i=0,j=0;
+        List<Integer> v = new ArrayList<>();
+        while(i<n1 && j<n2){
+            if(nums1[i] == nums2[j]){
+                v.add(nums1[i]);
+                i++; j++;
+            }
+            else if(nums1[i] < nums2[j]) i++;
+            else j++;
+        }
+        int[] ans = new int[v.size()];
+        int k=0;for(int val : v) ans[k++] = val;
+        return ans;
+    }
+}
