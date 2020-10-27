@@ -39,3 +39,42 @@ class Solution {
         return(i==s.length());
     }
 }
+
+Solution 2(o(nlogn))
+ class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int tlength=t.length(),slength=s.length(); 
+        if(slength==0) return true;
+        if(tlength==0) return false;
+        HashMap<Character,List<Integer>> map=new HashMap<>();
+        for(int i=0;i<t.length();i++){
+            if(!map.containsKey(t.charAt(i)))
+                map.put(t.charAt(i),new ArrayList<>());
+                map.get(t.charAt(i)).add(i);
+        }
+        int lastindx=-1;
+        for(int i=0;i<slength;i++){
+            if(map.containsKey(s.charAt(i)))
+            {int foundvalue=-1;
+            List<Integer> list=new ArrayList<>();
+            list=map.get(s.charAt(i));
+            int low=0,high=list.size()-1;
+            while(low<=high){
+                int mid=low+(high-low)/2;
+                if(list.get(mid)>lastindx)
+                {foundvalue=list.get(mid);
+                    high=mid-1;}
+                else low=mid+1;
+            }
+             if(foundvalue>lastindx)
+                 lastindx=foundvalue;
+             else return false;
+        }
+            else return false;}
+        return true;
+    } 
+}
+
+
+
+
