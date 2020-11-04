@@ -25,3 +25,13 @@ class Solution {
     return false;
     }   
 }
+
+//Solution 2(O(1))
+class Solution {
+    public boolean isPowerOfFour(int num) {
+        if(num<=0) return false;
+        int i = num & (num-1);
+        int digit = (int)(Math.log(num)/Math.log(2));
+        return i==0 && digit%2==0;
+    }
+}
