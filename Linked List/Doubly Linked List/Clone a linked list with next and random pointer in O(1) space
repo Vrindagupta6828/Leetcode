@@ -1,0 +1,69 @@
+/*
+Given a linked list having two pointers in each node. The first one points to the next node of the 
+list, however, the other pointer is random and can point to any node of the list. Write a program 
+that clones the given list in O(1) space, i.e., without any extra space. 
+1) Create the copy of node 1 and insert it between node 1 & node 2 in original Linked List, create the copy of 2 and insert it between 2 & 3.. Continue in this fashion, add the copy of N afte the Nth node
+2) Now copy the arbitrary link in this fashion
+
+     original->next->arbitrary = original->arbitrary->next;  /*TRAVERSE 
+TWO NODES*/
+This works because original->next is nothing but copy of original and Original->arbitrary->next is nothing but copy of arbitrary.
+3) Now restore the original and copy linked lists in this fashion in a single loop.
+
+     original->next = original->next->next;
+     copy->next = copy->next->next;
+4) Make sure that last element of original->next is NULL.  */
+
+
+// This function clones a given   
+// linked list in O(1) space  
+static Node clone(Node start)  
+{  
+    Node curr = start, temp = null;  
+  
+    // insert additional node after  
+    // every node of original list  
+    while (curr != null)  
+    {  
+        temp = curr.next;  
+  
+        // Inserting node  
+        curr.next = new Node(curr.data);  
+        curr.next.next = temp;  
+        curr = temp;  
+    }  
+    curr = start;  
+  
+    // adjust the random pointers of the  
+    // newly added nodes  
+    while (curr != null)  
+    {  
+        if(curr.next != null)  
+            curr.next.random = (curr.random != null) 
+                      ? curr.random.next : curr.random;  
+  
+        // move to the next newly added node by  
+        // skipping an original node  
+        curr = (curr.next != null) ? curr.next.next  
+                                        : curr.next;  
+    }  
+  
+    Node original = start, copy = start.next;  
+  
+    // save the start of copied linked list  
+    temp = copy;  
+  
+    // now separate the original list and copied list  
+    while (original != null && copy != null)  
+    {  
+        original.next = (original.next != null)?  
+                    original.next.next : original.next;  
+  
+        copy.next = (copy.next != null) ? copy.next.next  
+                                            : copy.next;  
+        original = original.next;  
+        copy = copy.next;  
+    }  
+    return temp;  
+}  
+  
