@@ -1,0 +1,16 @@
+/* Function to reverse a Doubly Linked List */
+
+public static Node reverseDLL(Node  head)
+{
+    //Your code here
+    if(head.next==null) return head;
+    Node prev=null;
+    while(head!=null){
+        temp=head.prev;
+        head.prev=head.next;
+        head.next=temp;
+        head=head.prev;
+    }
+    head=temp.prev;
+    return head;
+}
