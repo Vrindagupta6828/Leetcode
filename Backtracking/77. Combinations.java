@@ -44,6 +44,7 @@ class Solution {
           ans.add(new ArrayList<Integer>(temp));
           return true;
         }
+       if(temp.size()+(n-pos+1)<k)  return false;
         for(int i=pos;i<=n;i++){
             temp.add(i);
             combinationSum3(k-1,n,temp,i+1);
