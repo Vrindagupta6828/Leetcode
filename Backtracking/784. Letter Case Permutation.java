@@ -56,3 +56,40 @@ class Solution {
         return false;
     }
 }
+
+//Solution
+class Solution {
+    public List<String> letterCasePermutation(String S) {
+        
+        List<String> result= new ArrayList<>();
+
+        getAllPossible(result,new StringBuilder(S),0,S.length());
+        
+        return result;
+    }
+    
+    
+    public void  getAllPossible(List<String>result,StringBuilder ss,int index,int n){
+        
+        if(index ==n){
+           
+                result.add(ss.toString());
+                return;
+            
+        }
+        
+        if(ss.charAt(index)>='0' && ss.charAt(index)<='9'){
+           
+            getAllPossible(result,ss,index+1,n);
+            
+        } 
+        else{
+            char ch = ss.charAt(index);
+            ss.setCharAt(index,Character.toLowerCase(ch));
+            getAllPossible(result,ss,index+1,n);
+            ss.setCharAt(index,Character.toUpperCase(ch));
+            getAllPossible(result,ss,index+1,n);
+        }
+        
+    }
+}
