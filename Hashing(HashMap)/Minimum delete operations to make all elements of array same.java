@@ -1,3 +1,20 @@
+/*  Same as Minimum operation to make all elements equal in array question: Given an array with n positive integers. We need to find the minimum number
+of operation to make all elements equal. We can perform addition, multiplication, subtraction or division with any element on an array element.
+
+Examples:
+
+Input : arr[] = {1, 2, 3, 4}
+Output : 3
+Since all elements are different, 
+we need to perform at least three
+operations to make them same. For
+example, we can make them all 1
+by doing three subtractions. Or make
+them all 3 by doing three additions.
+
+Input : arr[] = {1, 1, 1, 1}
+Output : 0  */
+
 /* Question:
 Given an array of n elements such that elements may repeat. We can delete any number of elements from the array. The task is to find a minimum number of elements to be deleted from the array to make it equal.
 Examples:
