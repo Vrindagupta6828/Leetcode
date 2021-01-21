@@ -19,6 +19,10 @@ Explanation: Let the set be {1, 2, 3}
        
 First few Bell numbers are: 1, 1, 2, 5, 15, 52, 203, ….
 
+If to calculate for specific n and k :
+Bell(n)=sum(k=1 to n) S(n,k)
+S(n+1,k)=k*S(n,k) + S(n,k-1)
+
 Bell Triangle:
 1
 1 2
