@@ -76,4 +76,15 @@ class Solution {
     }
 };
 
-
+//Solution 2(o(n) time and space)
+class Solution {
+    static Long numberOfWays(int N) {
+        // code here
+        if(N<2) return (long)N;
+        long[] tile=new long[N+1];
+        tile[0]=0L;tile[1]=1L;tile[2]=2L;
+        for(int i=3;i<=N;i++)
+           tile[i]=(tile[i-1]+tile[i-2])%1000000007;
+        return tile[N];
+    }
+};
