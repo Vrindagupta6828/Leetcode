@@ -60,3 +60,46 @@ class GFG {
         System.out.println(largestSubset(a, n));
     }
 }
+
+//to print
+class Solution {
+    public List<Integer> largestDivisibleSubset(int[] nums) {
+        Arrays.sort(nums);
+        ArrayList<ArrayList<Integer>> a=new ArrayList<>();
+        int n=nums.length;
+        int[] dp=new int[n];
+        dp[n-1]=1;
+        ArrayList<Integer> u=new ArrayList<>();
+        u.add(nums[n-1]);
+        a.add(u);
+        for(int i=n-2;i>=0;i--){
+            int max=0;
+            int ind=-1;
+            for(int j=i+1;j<n;j++){
+                if(nums[j]%nums[i]==0 || nums[i]%nums[j]==0){
+                    if(max<dp[j])
+                    {ind=j;max=dp[j];}
+                }
+            }
+            dp[i]=1+max;
+            ArrayList<Integer> t=new ArrayList<>();
+            t.add(nums[i]);
+            if(ind!=-1){
+                ArrayList<Integer> temp=a.get(n-1-ind);
+                for(int x:temp)
+                    t.add(x);
+            }
+            a.add(t);
+        }
+        int max=0,ind=-1;
+        for(int i=0;i<n;i++){
+            if(dp[i]>max){
+                max=dp[i];
+                ind=i;
+            }
+        }
+        
+        return a.get(n-1-ind);
+    }
+}
+
