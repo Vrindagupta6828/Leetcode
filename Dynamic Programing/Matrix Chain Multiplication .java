@@ -35,7 +35,7 @@ Constraints:
 2 ≤ N ≤ 100
 1 ≤ arr[i] ≤ 500  */
 
-//Solution 1(O(n*n) time and space)
+//Solution 1
 class Solution{
     static int[][] dp;
     static int matrixMultiplication(int N, int arr[])
