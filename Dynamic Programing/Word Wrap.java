@@ -26,6 +26,7 @@ For example, consider the following two arrangement of same set of words:
 2) There are 3 lines. Each of the 3 lines has one extra space. Total extra spaces = 1 + 1 + 1 = 3. Total cost = 1*1*1 + 1*1*1 + 1*1*1 = 3.  */
 
 //Solution(o(n*n) time and space))
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
