@@ -33,3 +33,24 @@ public class Solution {
         return ans;
     }
 }
+
+//Solution 2
+public class Solution {
+    public ArrayList<ArrayList<Integer>> solve(int A) {
+        ArrayList<ArrayList<Integer>> ans = new ArrayList<>();
+        
+        for(int i = 0; i < A; i++){
+            ArrayList <Integer> ar = new ArrayList<>();
+            
+            for(int j = 0; j <= i; j++){
+                if(j == 0 || j == i){
+                    ar.add(1);
+                } else {
+                    ar.add(ans.get(i - 1).get(j) + ans.get(i - 1).get(j - 1));
+                }
+            }
+            ans.add(ar);
+        }
+        return ans;
+    }
+}
