@@ -65,4 +65,41 @@ public class Solution {
     }
 }
 
-//if not a string you can replace 0 by 1 and 1 by -1 you can then cal contagious maxm subarray by kadane's algo
+//Solution 2 - if not a string you can replace 0 by 1 and 1 by -1 you can then cal contagious maxm subarray by kadane's algo
+
+
+//Solution 3
+int n = A.length();
+        
+        int c0=0,c1=0,left=Integer.MAX_VALUE,right=0;
+        boolean flag=false;
+        int ansl=0,ansr=0,prev=-1;
+        for(int i=0;i<A.length();i++){
+            char c =A.charAt(i);
+            if(c=='1')c1+=1;
+            else c0+=1;
+            if(c0>0)flag =true;
+            
+            if(c1>c0){
+                c0=0;
+                c1=0;
+               
+                left = Integer.MAX_VALUE;
+                right=0;
+                
+            }
+            else if(c=='0'){
+                left = Math.min(left,i);
+                right=i;
+                if(c0-c1>prev){
+                    ansl = left;
+                    ansr=right;
+                    prev=c0-c1;
+                }
+            }
+            
+        }
+        if(!flag) return new ArrayList<>(0);
+        res.add(ansl+1);
+        res.add(ansr+1);
+        return res;
