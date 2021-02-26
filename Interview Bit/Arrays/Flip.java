@@ -64,3 +64,5 @@ public class Solution {
         return ansF;
     }
 }
+
+//if not a string you can replace 0 by 1 and 1 by -1 you can then cal contagious maxm subarray by kadane's algo
