@@ -52,7 +52,7 @@ Z -> 26
 AA -> 27
 AB -> 28   */
 
-//Solution
+//Solution 1
 public class Solution {
     public int titleToNumber(String A) {
         
@@ -64,4 +64,16 @@ public class Solution {
         }
         return ans;
     }
+}
+
+//Solution 2
+public class Solution {
+	public int titleToNumber(String a) {
+	    int num = 0;
+	    for (int i = a.length() - 1, j = 0; i >= 0; i--) {
+	        num += (int) Math.pow(26, j) * (a.charAt(i) - 'A' + 1);
+	        j++;
+	    }
+	    return num;
+	}
 }
