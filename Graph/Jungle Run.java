@@ -89,3 +89,67 @@ class TestClass {
 	}
 
 }
+
+//Solution 2:
+import java.util.*;
+import javafx.util.Pair; 
+class TestClass {
+    static int[][] vis=new int[31][31];
+    static int[][] dist=new int[31][31];
+    static char[][] jungle=new char[31][31];
+    static int[] dx= {-1,0,1,0};
+    static int[] dy= {0,1,0,-1};
+	static int n;
+    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+        Scanner sc=new Scanner(System.in);
+        n=sc.nextInt();
+        int srcx=-1,srcy=-1,endx=-1,endy=-1;
+        
+        for(int i=1;i<=n;i++) {
+        	for(int j=1;j<=n;j++) {
+        		jungle[i][j]=sc.next().charAt(0);
+        		if(jungle[i][j]=='S')
+        			{srcx=i;srcy=j;}
+        		else if(jungle[i][j]=='E')
+        		{ endx=i;endy=j;}
+        	}
+        }
+        
+        bfs(srcx,srcy);
+        System.out.println(dist[endx][endy]);
+	}
+	
+	static void bfs(int srcx,int srcy) {
+		Queue<Pair<Integer,Integer>> q=new LinkedList<>();
+		q.add(new Pair<Integer,Integer>(srcx,srcy));
+		dist[srcx][srcy]=0;
+		vis[srcx][srcy]=1;
+		
+		while(!q.isEmpty()) {
+			Pair<Integer,Integer> curr=q.poll();
+			int currx=curr.getKey();
+			int curry=curr.getValue();
+			
+			for(int i=0;i<4;i++) {
+				if(isValid(currx+dx[i],curry+dy[i]))
+				{int newx=currx+dx[i];
+				 int newy=curry+dy[i];
+				 dist[newx][newy]=dist[currx][curry]+1;
+				 vis[newx][newy]=1;
+				 q.add(new Pair<Integer,Integer>(newx,newy));
+				}
+			}
+		}
+	}
+	
+	static boolean isValid(int x,int y) {
+		if(x<1 || y<1 || x>n || y>n) return false;
+		
+		if(vis[x][y]==1 || jungle[x][y]=='T') return false;
+		
+		return true;
+	}
+
+}
