@@ -53,3 +53,24 @@ class Solution {
         return ans;
     }
 }
+
+//Solution 2
+class Solution {
+    public int lengthOfLongestSubstring(String s) {
+        int i=0,j=0,n=s.length(),max=0;
+        HashSet<Character> set=new HashSet<>();
+        
+        while(j<n){
+            if(set.contains(s.charAt(j)))
+            {   set.remove(s.charAt(i));
+                 i++;
+            }
+            else{
+                set.add(s.charAt(j));
+                max=Math.max(max,set.size());
+                j++;
+            }
+        }
+        return max;
+    }
+}
